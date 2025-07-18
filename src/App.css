@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.ant-badge-status-success .ant-badge-status-dot {
+  background-color: #28a745 !important;
+}
+.ant-badge-status-error .ant-badge-status-dot {
+  background-color: #dc3545 !important;
+}
