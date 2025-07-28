@@ -43,3 +43,87 @@
 .ant-badge-status-error .ant-badge-status-dot {
   background-color: #dc3545 !important;
 }
+
+.dark-mode {
+  background: #23272f !important;
+}
+.dark-mode .ant-layout {
+  background: #23272f !important;
+}
+.dark-mode .ant-layout-header {
+  background: #23272f !important;
+  color: #fff !important;
+}
+.dark-mode .ant-layout-content {
+  background: #2c313a !important;
+  color: #fff !important;
+}
+.dark-mode .ant-card {
+  background: #2c313a !important;
+  color: #fff !important;
+  border-color: #444 !important;
+}
+.dark-mode .ant-card-head {
+  background: #2c313a !important;
+  color: #fff !important;
+  border-bottom: 1px solid #444 !important;
+}
+.dark-mode .ant-btn {
+  background: #2c313a !important;
+  color: #fff !important;
+  border-color: #444 !important;
+}
+.dark-mode .ant-btn-primary {
+  background: #1677ff !important;
+  color: #fff !important;
+  border-color: #1677ff !important;
+}
+.dark-mode .ant-table {
+  background: #2c313a !important;
+  color: #fff !important;
+  border-color: #444 !important;
+}
+.dark-mode .ant-table-thead > tr > th {
+  background: #23272f !important;
+  color: #fff !important;
+  border-color: #444 !important;
+}
+.dark-mode .ant-table-tbody > tr > td {
+  background: #2c313a !important;
+  color: #fff !important;
+  border-color: #444 !important;
+}
+.dark-mode .ant-select-selector {
+  background: #2c313a !important;
+  color: #fff !important;
+  border-color: #444 !important;
+}
+.dark-mode .ant-modal-content {
+  background: #2c313a !important;
+  color: #fff !important;
+  border-color: #444 !important;
+}
+.dark-mode .ant-modal-header {
+  background: #23272f !important;
+  color: #fff !important;
+  border-bottom: 1px solid #444 !important;
+}
+.dark-mode .ant-modal-title {
+  color: #fff !important;
+}
+.dark-mode .ant-switch {
+  background: #444 !important;
+}
+.dark-mode .ant-switch-checked {
+  background: #1677ff !important;
+}
+
+/* Header: switch arriba a la derecha */
+.header-switch-container {
+  position: absolute;
+  top: 16px;
+  right: 32px;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}

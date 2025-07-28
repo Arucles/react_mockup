@@ -11,13 +11,12 @@ app.use(express.json());
 // Pool para consultas REST
 const pool = new Pool();
 
-app.get("/api/alarmas", async (req, res) => {
-  const { region = "", comuna = "", tipo = "" } = req.query;
+// Endpoint para BRAS
+app.get("/api/alarmas/bras", async (req, res) => {
+  const { region = "", comuna = "" } = req.query;
   try {
-    // Construye filtros dinámicos
     const condiciones = [];
     const params = [];
-
     if (region) {
       params.push(region);
       condiciones.push(`region = $${params.length}`);
@@ -26,19 +25,88 @@ app.get("/api/alarmas", async (req, res) => {
       params.push(comuna);
       condiciones.push(`comuna = $${params.length}`);
     }
-    if (tipo) {
-      params.push(tipo);
-      condiciones.push(`tipo_dispositivo = $${params.length}`);
-    }
-
-    let sql = "SELECT * FROM alarmas";
+    let sql = "SELECT * FROM alarmas_bras";
     if (condiciones.length) sql += " WHERE " + condiciones.join(" AND ");
     sql += " ORDER BY nombre_dispositivo";
-
     const { rows } = await pool.query(sql, params);
     return res.json(rows);
   } catch (err) {
-    console.error("Error en /api/alarmas:", err);
+    console.error("Error en /api/alarmas/bras:", err);
+    return res.status(500).json({ error: "Error interno en el servidor" });
+  }
+});
+
+// Endpoint para OLT
+app.get("/api/alarmas/olt", async (req, res) => {
+  const { region = "", comuna = "" } = req.query;
+  try {
+    const condiciones = [];
+    const params = [];
+    if (region) {
+      params.push(region);
+      condiciones.push(`region = $${params.length}`);
+    }
+    if (comuna) {
+      params.push(comuna);
+      condiciones.push(`comuna = $${params.length}`);
+    }
+    let sql = "SELECT * FROM alarmas_olt";
+    if (condiciones.length) sql += " WHERE " + condiciones.join(" AND ");
+    sql += " ORDER BY nombre_dispositivo";
+    const { rows } = await pool.query(sql, params);
+    return res.json(rows);
+  } catch (err) {
+    console.error("Error en /api/alarmas/olt:", err);
+    return res.status(500).json({ error: "Error interno en el servidor" });
+  }
+});
+
+// Endpoint para HGU
+app.get("/api/alarmas/hgu", async (req, res) => {
+  const { region = "", comuna = "" } = req.query;
+  try {
+    const condiciones = [];
+    const params = [];
+    if (region) {
+      params.push(region);
+      condiciones.push(`region = $${params.length}`);
+    }
+    if (comuna) {
+      params.push(comuna);
+      condiciones.push(`comuna = $${params.length}`);
+    }
+    let sql = "SELECT * FROM alarmas_hgu";
+    if (condiciones.length) sql += " WHERE " + condiciones.join(" AND ");
+    sql += " ORDER BY nombre_dispositivo";
+    const { rows } = await pool.query(sql, params);
+    return res.json(rows);
+  } catch (err) {
+    console.error("Error en /api/alarmas/hgu:", err);
+    return res.status(500).json({ error: "Error interno en el servidor" });
+  }
+});
+
+// Endpoint para RADIUS
+app.get("/api/alarmas/radius", async (req, res) => {
+  const { region = "", comuna = "" } = req.query;
+  try {
+    const condiciones = [];
+    const params = [];
+    if (region) {
+      params.push(region);
+      condiciones.push(`region = $${params.length}`);
+    }
+    if (comuna) {
+      params.push(comuna);
+      condiciones.push(`comuna = $${params.length}`);
+    }
+    let sql = "SELECT * FROM alarmas_radius";
+    if (condiciones.length) sql += " WHERE " + condiciones.join(" AND ");
+    sql += " ORDER BY nombre_dispositivo";
+    const { rows } = await pool.query(sql, params);
+    return res.json(rows);
+  } catch (err) {
+    console.error("Error en /api/alarmas/radius:", err);
     return res.status(500).json({ error: "Error interno en el servidor" });
   }
 });
